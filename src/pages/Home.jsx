@@ -1,16 +1,36 @@
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import React from "react";
+import { Container } from "react-bootstrap";
+import CardComponent from "../components/CardComponent";
+import { useGlobalContext } from "../store.jsx";
 
-export const Home = () => {
+const Home = () => {
+  const { store } = useGlobalContext();
 
-  const {store, dispatch} =useGlobalReducer()
+  const Section = ({ title, items, type }) => {
+    if (!items?.length) return null;
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-		</div>
-	);
-}; 
+    return (
+      <div className="mb-5">
+        <h2 className="text-warning text-uppercase mb-3">{title}</h2>
+        <div
+          className="d-flex flex-row gap-3 overflow-auto pb-2"
+          style={{ scrollSnapType: "x mandatory" }}
+        >
+          {items.map((item, index) => (
+            <CardComponent key={index} item={item} type={type} />
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <Container className="py-4 text-light">
+      <Section title="Characters" items={store.people} type="people" />
+      <Section title="Planets" items={store.planets} type="planets" />
+      <Section title="Vehicles" items={store.vehicles} type="vehicles" />
+    </Container>
+  );
+};
+
+export default Home;
