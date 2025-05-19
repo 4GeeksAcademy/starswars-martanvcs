@@ -111,4 +111,4 @@ export const StoreProvider = ({ children }) => {
 			{children}
 		</Context.Provider>
 	);
-};
+};	

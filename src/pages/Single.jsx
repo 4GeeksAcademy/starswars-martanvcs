@@ -10,7 +10,7 @@ const Single = () => {
   const { type, uid } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [imageExists, setImageExists] = useState(true);
+  const [imageVisible, setImageVisible] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,10 +37,9 @@ const Single = () => {
   const imageUrl = `https://starwars-visualguide.com/assets/img/${visualType}/${visualUid}.jpg`;
   const descriptionEntry = entityDescriptions[properties.name];
 
-  const handleImageError = (e) => {
-    setImageExists(false);
-    e.target.src =
-      "https://starwars-visualguide.com/assets/img/big-placeholder.jpg";
+  const handleImageError = () => {
+    setImageVisible(false);
+    console.warn(`Image not found: ${imageUrl}`);
   };
 
   const section = (title, items) => (
@@ -59,15 +58,17 @@ const Single = () => {
   return (
     <Container fluid className="text-light py-4">
       <Row className="gx-4 gy-4 align-items-start">
-        <Col lg={5}>
-          <img
-            src={imageExists ? imageUrl : "https://starwars-visualguide.com/assets/img/big-placeholder.jpg"}
-            alt={properties.name}
-            onError={handleImageError}
-            className="img-fluid rounded shadow"
-          />
-        </Col>
-        <Col lg={7}>
+        {imageVisible && (
+          <Col lg={5}>
+            <img
+              src={imageUrl}
+              alt={properties.name}
+              onError={handleImageError}
+              className="img-fluid rounded shadow"
+            />
+          </Col>
+        )}
+        <Col lg={imageVisible ? 7 : 12}>
           <h2 className="text-uppercase text-warning">{properties.name}</h2>
           <p className="mb-4">
             {descriptionEntry?.text ||

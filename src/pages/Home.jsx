@@ -1,36 +1,47 @@
-import React from "react";
-import { Container } from "react-bootstrap";
-import CardComponent from "../components/CardComponent";
-import { useGlobalContext } from "../store.jsx";
+import React, { useEffect, useState } from "react";
+import CardComponent from "../component/CardComponent.jsx";
 
-const Home = () => {
-  const { store } = useGlobalContext();
+export const Home = () => {
+    const [characters, setCharacters] = useState([]);
+    const [planets, setPlanets] = useState([]);
+    const [vehicles, setVehicles] = useState([]);
 
-  const Section = ({ title, items, type }) => {
-    if (!items?.length) return null;
+    useEffect(() => {
+        fetch("https://www.swapi.tech/api/people")
+            .then(res => res.json())
+            .then(data => setCharacters(data.results));
+
+        fetch("https://www.swapi.tech/api/planets")
+            .then(res => res.json())
+            .then(data => setPlanets(data.results));
+
+        fetch("https://www.swapi.tech/api/vehicles")
+            .then(res => res.json())
+            .then(data => setVehicles(data.results));
+    }, []);
 
     return (
-      <div className="mb-5">
-        <h2 className="text-warning text-uppercase mb-3">{title}</h2>
-        <div
-          className="d-flex flex-row gap-3 overflow-auto pb-2"
-          style={{ scrollSnapType: "x mandatory" }}
-        >
-          {items.map((item, index) => (
-            <CardComponent key={index} item={item} type={type} />
-          ))}
+        <div className="container mt-4">
+            <h2>Characters</h2>
+            <div className="d-flex overflow-auto">
+                {characters.map((item, index) => (
+                    <CardComponent key={index} name={item.name} />
+                ))}
+            </div>
+
+            <h2>Planets</h2>
+            <div className="d-flex overflow-auto">
+                {planets.map((item, index) => (
+                    <CardComponent key={index} name={item.name} />
+                ))}
+            </div>
+
+            <h2>Vehicles</h2>
+            <div className="d-flex overflow-auto">
+                {vehicles.map((item, index) => (
+                    <CardComponent key={index} name={item.name} />
+                ))}
+            </div>
         </div>
-      </div>
     );
-  };
-
-  return (
-    <Container className="py-4 text-light">
-      <Section title="Characters" items={store.people} type="people" />
-      <Section title="Planets" items={store.planets} type="planets" />
-      <Section title="Vehicles" items={store.vehicles} type="vehicles" />
-    </Container>
-  );
 };
-
-export default Home;
