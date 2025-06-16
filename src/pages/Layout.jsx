@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import { useGlobalContext } from "../store.jsx";
 
+// Base component that maintains the navbar and footer throughout the page and the scroll to top functionality.
 const Layout = () => {
   const { actions } = useGlobalContext();
 

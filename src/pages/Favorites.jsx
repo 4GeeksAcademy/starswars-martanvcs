@@ -7,7 +7,7 @@ const Favorites = () => {
 	const { store } = useGlobalContext();
 
 	const grouped = {
-		characters: store.favorites.filter((item) => item.type === "characters"),
+		people: store.favorites.filter((item) => item.type === "people"),
 		planets: store.favorites.filter((item) => item.type === "planets"),
 		vehicles: store.favorites.filter((item) => item.type === "vehicles"),
 	};

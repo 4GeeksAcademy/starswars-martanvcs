@@ -1,49 +1,41 @@
-import React from "react";
+// Import necessary components from react-router-dom and other parts of the application.
 import { Link } from "react-router-dom";
-import { useGlobalContext } from "../store.jsx";
-import { Container, ListGroup, Button } from "react-bootstrap";
+import { useGlobalContext } from "../store.jsx";  // Custom hook for accessing the global state.
 
-const Demo = () => {
+export const Demo = () => {
+  // Access the global state and dispatch function using the useGlobalReducer hook.
   const { store, actions } = useGlobalContext();
 
   return (
-    <Container className="mt-4">
-      <h2>Demo Page</h2>
-      <p>This page demonstrates how the global context and actions work.</p>
-
-      {store.todos?.length > 0 ? (
-        <ListGroup>
-          {store.todos.map((item) => (
-            <ListGroup.Item
-              key={item.id}
-              className="d-flex justify-content-between align-items-center"
-              style={{ backgroundColor: item.background || "white" }}
-            >
-              <div>
-                <Link to={`/single/${item.id}`}>Link to: {item.title}</Link>
-                <p className="mb-0 text-muted">
-                  Open file <code>store.js</code> to see the global store that updates this color.
-                </p>
-              </div>
-              <Button
-                variant="success"
-                onClick={() => actions.updateColor?.(item.id, "#ffa500")}
-              >
+    <div className="container">
+      <ul className="list-group">
+        {/* Map over the 'todos' array from the store and render each item as a list element */}
+        {store && store.todos?.map((item) => {
+          return (
+            <li
+              key={item.id}  // React key for list items.
+              className="list-group-item d-flex justify-content-between"
+              style={{ background: item.background }}> 
+              
+              {/* Link to the detail page of this todo. */}
+              <Link to={"/single/" + item.id}>Link to: {item.title} </Link>
+              
+              <p>Open file ./store.js to see the global store that contains and updates the list of colors</p>
+              
+              <button className="btn btn-success" 
+                onClick={() => actions.addTaskColor?.(item.id, '#ffa500')}>
                 Change Color
-              </Button>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-      ) : (
-        <p>No todos found. Add some to the store.</p>
-      )}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <br />
 
-      <div className="mt-4">
-        <Link to="/">
-          <Button variant="primary">Back to Home</Button>
-        </Link>
-      </div>
-    </Container>
+      <Link to="/">
+        <button className="btn btn-primary">Back home</button>
+      </Link>
+    </div>
   );
 };
 

@@ -1,29 +1,25 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-// Crear contexto global
 export const Context = createContext(null);
 export const useGlobalContext = () => useContext(Context);
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Setter externo
 let setStoreFromOutside = () => {};
 
-// Estado inicial
-const initialStore = {
+export const initialStore = () => ({
 	message: null,
+	todos: [
+		{ id: 1, title: "Make the bed", background: null },
+		{ id: 2, title: "Do my homework", background: null },
+	],
 	favorites: [],
 	people: [],
 	planets: [],
 	vehicles: [],
-	todos: [
-		{ id: 1, title: "Make the bed", background: null },
-		{ id: 2, title: "Do my homework", background: null }
-	],
-};
+});
 
-// Reducer
-function storeReducer(store, action) {
+export default function storeReducer(store, action = {}) {
 	switch (action.type) {
 		case "add_task":
 			const { id, color } = action.payload;
@@ -39,7 +35,7 @@ function storeReducer(store, action) {
 				...action.payload,
 			};
 		default:
-			throw new Error("Unknown action type: " + action.type);
+			throw Error("Unknown action.");
 	}
 }
 
@@ -53,9 +49,7 @@ const getState = ({ getStore, setStore }) => {
 				const parsed = JSON.parse(cached);
 				setStoreFromOutside({ [type]: parsed });
 				return;
-			} catch (err) {
-				console.warn(`Error parsing cache for ${type}:`, err);
-			}
+			} catch (err) {}
 		}
 
 		try {
@@ -77,7 +71,6 @@ const getState = ({ getStore, setStore }) => {
 			const list = data[dataKey];
 
 			if (type === "planets" || type === "vehicles") {
-				// Añadir uid numérico para que coincida con las imágenes
 				const withUid = list.map((item, index) => ({
 					...item,
 					uid: (index + 1).toString(),
@@ -87,7 +80,6 @@ const getState = ({ getStore, setStore }) => {
 				return;
 			}
 
-			// Para 'people' aún usamos SWAPI con detalles
 			const shortList = list.slice(0, 10);
 			const items = [];
 
@@ -100,20 +92,17 @@ const getState = ({ getStore, setStore }) => {
 
 			setStoreFromOutside({ [type]: items });
 			localStorage.setItem(cacheKey, JSON.stringify(items));
-		} catch (err) {
-			console.error(`Error fetching ${type}:`, err);
-		}
+		} catch (err) {}
 	};
 
 	return {
-		store: initialStore,
+		store: initialStore(),
 		actions: {
 			loadData: async () => {
 				await fetchData("people");
 				await fetchData("planets");
 				await fetchData("vehicles");
 			},
-
 			toggleFavorite: (item) => {
 				const store = getStore();
 				const exists = store.favorites.some(
@@ -126,16 +115,6 @@ const getState = ({ getStore, setStore }) => {
 					: [...store.favorites, item];
 				setStore({ favorites: updatedFavorites });
 			},
-
-			updateColor: (id, color) => {
-				setStoreFromOutside((prev) => ({
-					...prev,
-					todos: prev.todos.map((todo) =>
-						todo.id === id ? { ...todo, background: color } : todo
-					),
-				}));
-			},
-
 			addTaskColor: (id, color) => {
 				setStoreFromOutside((prev) => ({
 					...prev,

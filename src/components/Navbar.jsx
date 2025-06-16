@@ -58,7 +58,7 @@ const Navbar = () => {
                     store.favorites.map((item, i) => (
                       <Dropdown.Item
                         key={i}
-                        className="d-flex justify-content-between align-items-center text-white"
+                        className="d-flex justify-content-between align-items-center text-white no-hover"
                       >
                         <span>{item.name}</span>
                         <Button
