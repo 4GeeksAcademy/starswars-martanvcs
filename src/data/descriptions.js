@@ -1,5 +1,5 @@
 export const entityDescriptions = {
-  // 🧍 PEOPLE
+  // 🧝 PEOPLE
   "Luke Skywalker": {
     text: "Luke Skywalker is a character in the Star Wars universe.",
     details: {
@@ -132,105 +132,94 @@ export const entityDescriptions = {
   },
 
   // 🌍 PLANETS
-  "Tatooine": {
-    text: "Tatooine is a desert planet and the homeworld of Anakin and Luke Skywalker.",
+  "Ahch-To": {
+    text: "Ahch-To is an oceanic planet, the site of the first Jedi Temple.",
+    details: {
+      region: "Unknown Regions",
+      climate: "Mild",
+      terrain: "Islands, ocean",
+      notable_species: ["Thala-siren"],
+      affiliations: ["Jedi Order"],
+      appearances: ["Episode VIII"]
+    }
+  },
+  "Ahch-To Jedi Temple": {
+    text: "An ancient Jedi Temple located on the remote planet Ahch-To.",
+    details: {
+      region: "Unknown Regions",
+      climate: "Temperate",
+      terrain: "Stone huts, cliffs",
+      notable_species: [],
+      affiliations: ["Jedi Order"],
+      appearances: ["Episode VIII"]
+    }
+  },
+  "Ahch-To Mirror Cave": {
+    text: "A mysterious cave strong with the Force located on Ahch-To.",
+    details: {
+      region: "Unknown Regions",
+      climate: "Dark, humid",
+      terrain: "Rocky, reflective walls",
+      notable_species: [],
+      affiliations: [],
+      appearances: ["Episode VIII"]
+    }
+  },
+  "Abafar": {
+    text: "A remote desert planet known for the city of Pons Ora.",
     details: {
       region: "Outer Rim",
       climate: "Arid",
       terrain: "Desert",
-      notable_species: ["Humans", "Jawas", "Tusken Raiders"],
-      affiliations: ["Hutt Cartel"],
-      appearances: ["Episode I–IV"]
+      notable_species: ["Muun"],
+      affiliations: ["Galactic Republic"],
+      appearances: ["The Clone Wars"]
     }
   },
-  "Alderaan": {
-    text: "Alderaan was a peaceful Core World destroyed by the Death Star.",
+  "79's": {
+    text: "A clone trooper bar on Coruscant popular among off-duty troopers.",
     details: {
       region: "Core Worlds",
-      climate: "Temperate",
-      terrain: "Grasslands, Mountains",
-      notable_species: ["Humans"],
-      affiliations: ["Galactic Senate"],
-      appearances: ["Episode IV"]
-    }
-  },
-  "Yavin IV": {
-    text: "Yavin IV is a jungle moon that served as a Rebel base.",
-    details: {
-      region: "Outer Rim",
-      climate: "Humid",
-      terrain: "Jungle, Ruins",
-      notable_species: [],
-      affiliations: ["Rebel Alliance"],
-      appearances: ["Episode IV"]
-    }
-  },
-  "Hoth": {
-    text: "Hoth is an icy planet and site of a major Rebel base.",
-    details: {
-      region: "Outer Rim",
-      climate: "Frozen",
-      terrain: "Ice fields, Mountains",
-      notable_species: ["Wampa", "Tauntaun"],
-      affiliations: ["Rebel Alliance"],
-      appearances: ["Episode V"]
-    }
-  },
-  "Dagobah": {
-    text: "Dagobah is a swampy world where Yoda lived in exile.",
-    details: {
-      region: "Outer Rim",
-      climate: "Wet",
-      terrain: "Swamp, Jungle",
-      notable_species: [],
-      affiliations: [],
-      appearances: ["Episode V", "Episode VI"]
+      climate: "Urban",
+      terrain: "City",
+      notable_species: ["Clones"],
+      affiliations: ["Galactic Republic"],
+      appearances: ["The Clone Wars"]
     }
   },
 
   // 🚗 VEHICLES
-  "Sand Crawler": {
-    text: "Sandcrawlers are large treaded fortresses used by Jawas.",
+  "AT-DT walker": {
+    text: "The AT-DT is a light Imperial walker equipped with a large cannon.",
     details: {
-      class: "Transport",
-      manufacturer: "Corellia Mining Corporation",
-      affiliations: ["Jawas"],
-      appearances: ["Episode IV"],
-      used_by: ["Jawas"],
-      weapons: ["None"]
-    }
-  },
-  "T-16 skyhopper": {
-    text: "The T-16 skyhopper is a high-speed repulsorlift vehicle.",
-    details: {
-      class: "Air Speeder",
-      manufacturer: "Incom Corporation",
-      affiliations: ["Tatooine Civilians"],
-      appearances: ["Episode IV"],
-      used_by: ["Luke Skywalker"],
-      weapons: []
-    }
-  },
-  "X-34 landspeeder": {
-    text: "A common landspeeder model used on Tatooine.",
-    details: {
-      class: "Landspeeder",
-      manufacturer: "SoroSuub Corporation",
-      affiliations: ["Civilians"],
-      appearances: ["Episode IV"],
-      used_by: ["Luke Skywalker"],
-      weapons: []
-    }
-  },
-  "TIE/LN starfighter": {
-    text: "The standard Imperial starfighter.",
-    details: {
-      class: "Starfighter",
-      manufacturer: "Sienar Fleet Systems",
+      class: "Walker",
+      manufacturer: "Kuat Drive Yards",
       affiliations: ["Galactic Empire"],
-      appearances: ["Episode IV–VI"],
-      used_by: ["Imperial Pilots"],
-      weapons: ["Laser Cannons"]
+      appearances: ["Solo: A Star Wars Story"],
+      used_by: ["Imperial Army"],
+      weapons: ["Heavy cannon"]
+    }
+  },
+  "AA-9 Coruscant freighter": {
+    text: "A passenger starship used for long-range travel.",
+    details: {
+      class: "Freighter",
+      manufacturer: "Botajef Shipyards",
+      affiliations: ["Civilians"],
+      appearances: ["Episode II"],
+      used_by: ["Anakin Skywalker", "Padmé Amidala"],
+      weapons: []
+    }
+  },
+  "Canto Bight Speeders": {
+    text: "Luxurious speeders used in the city of Canto Bight.",
+    details: {
+      class: "Speeder",
+      manufacturer: "Various",
+      affiliations: ["Canto Bight"],
+      appearances: ["Episode VIII"],
+      used_by: ["City residents"],
+      weapons: []
     }
   }
 };

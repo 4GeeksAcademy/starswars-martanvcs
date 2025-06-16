@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import ScrollToTop from "../components/ScrollToTop";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import ScrollToTop from "../components/ScrollToTop";
 import Sidebar from "../components/Sidebar";
-import { Outlet } from "react-router-dom";
 import { useGlobalContext } from "../store.jsx";
 
 const Layout = () => {
@@ -29,5 +29,4 @@ const Layout = () => {
 };
 
 export default Layout;
-
 

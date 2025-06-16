@@ -1,7 +1,7 @@
 import {
-	createBrowserRouter,
-	createRoutesFromElements,
-	Route,
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
 } from "react-router-dom";
 
 import Layout from "./pages/Layout";
@@ -11,15 +11,16 @@ import Demo from "./pages/Demo";
 import Favorites from "./pages/Favorites";
 
 export const router = createBrowserRouter(
-	createRoutesFromElements(
-		<Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>}>
-			<Route index element={<Home />} />
+    createRoutesFromElements(
+        <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>}>
 
-			{/* ✅ Ruta dinámica para personajes, planetas y vehículos */}
-			<Route path=":type/:uid" element={<Single />} />
+           
+            <Route index element={<Home />} />
+         
+            <Route path=":type/:uid" element={<Single />} />
+            <Route path="favorites" element={<Favorites />} />
+            <Route path="demo" element={<Demo />} />
 
-			<Route path="favorites" element={<Favorites />} />
-			<Route path="demo" element={<Demo />} />
-		</Route>
-	)
+        </Route>
+    )
 );
